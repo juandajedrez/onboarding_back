@@ -16,7 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from registro_app.views import agregar_empleado, consultar_empleado
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("empleados/", agregar_empleado),
+    path("empleados/<str:numero_identificacion>/", consultar_empleado),
 ]
+
