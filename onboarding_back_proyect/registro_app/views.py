@@ -1,4 +1,4 @@
-from django.shortcuts import render
+#from django.shortcuts import render
 
 import json
 from django.http import JsonResponse
@@ -13,22 +13,24 @@ def agregar_empleado(request):
             data = json.loads(request.body)
 
             empleado = Empleado(
-                nombre=data.get("nombre"),
-                apellido=data.get("apellido"),
-                telefono=data.get("telefono"),
-                direccion=data.get("direccion"),
-                ciudad=data.get("ciudad"),
-                codigo_postal=data.get("codigo_postal"),
-                cargo=data.get("cargo"),
+                nombre=data.get("nameOne"),
+                othername=data.get("otherName"),
+                apellido=data.get("firstSurname"),
+                segundoapellido=data.get("secondSurname"),
+                telefono=data.get("telephone"),
+                direccion=data.get("address"),
+                ciudad=data.get("city"),
+                codigo_postal=data.get("postalCode"),
+                cargo=data.get("position"),
                 area=data.get("area"),
-                numero_identificacion=data.get("numero_identificacion")
+                numberEmployee=data.get("numberEmployee")
             )
 
             empleado.save()
 
             return JsonResponse({
                 "mensaje": "Empleado agregado correctamente",
-                "id": empleado.id
+                "id": empleado.numberEmployee
             }, status=201)
 
         except Exception as e:
@@ -40,24 +42,26 @@ def agregar_empleado(request):
         "error": "Método no permitido"
     }, status=405)
 
-def consultar_empleado(request, numero_identificacion):
+def consultar_empleado(request, numberEmployee):
     if request.method == "GET":
         try:
             empleado = Empleado.objects.get(
-                numero_identificacion=numero_identificacion
+                numberEmployee=numberEmployee
             )
 
             return JsonResponse({
-                "id": empleado.id,
-                "nombre": empleado.nombre,
-                "apellido": empleado.apellido,
-                "telefono": empleado.telefono,
-                "direccion": empleado.direccion,
-                "ciudad": empleado.ciudad,
-                "codigo_postal": empleado.codigo_postal,
-                "cargo": empleado.cargo,
+                "numberEmployee": empleado.numberEmployee,
+                "nameOne": empleado.nombre,
+                "otherName": empleado.othername,
+                "firstSurname": empleado.apellido,
+                "secondSurname": empleado.segundoapellido,
+                "telephone": empleado.telefono,
+                "address": empleado.direccion,
+                "city": empleado.ciudad,
+                "postalCode": empleado.codigo_postal,
+                "position": empleado.cargo,
                 "area": empleado.area,
-                "numero_identificacion": empleado.numero_identificacion
+                
             }, status=200)
 
         except Empleado.DoesNotExist:

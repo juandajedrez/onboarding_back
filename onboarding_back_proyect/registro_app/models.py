@@ -14,7 +14,7 @@ class Empleado(models.Model):
     cargo = models.CharField(max_length=100)
     area = models.CharField(max_length=100)
 
-    numero_identificacion = models.CharField(
+    numberEmployee = models.CharField(
         max_length=10,
         unique=True
     )
@@ -50,8 +50,8 @@ class Empleado(models.Model):
     def get_area(self):
         return self.area
 
-    def get_numero_identificacion(self):
-        return self.numero_identificacion
+    def get_numberEmployee(self):
+        return self.numberEmployee
 
     # ===== SETTERS =====
     def set_nombre(self, nombre):
@@ -84,8 +84,8 @@ class Empleado(models.Model):
     def set_area(self, area):
         self.area = area
 
-    def set_numero_identificacion(self, numero_identificacion):
-        self.numero_identificacion = numero_identificacion
+    def set_numberEmployee(self, numberEmployee):
+        self.numberEmployee = numberEmployee
 
     def __str__(self):
         return f"{self.nombre} {self.apellido}"

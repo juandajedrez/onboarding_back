@@ -22,6 +22,6 @@ from registro_app.views import agregar_empleado, consultar_empleado
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("empleados/", agregar_empleado),
-    path("empleados/<str:numero_identificacion>/", consultar_empleado),
+    path("empleados/<str:numberEmployee>/", consultar_empleado),
 ]
 
